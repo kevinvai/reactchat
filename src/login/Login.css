@@ -1,0 +1,23 @@
+.Login {
+    padding: 30px;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+ }
+ 
+ .border-radius {
+    border-radius: 10px;
+    border: 2px black solid;
+    padding: 10px;
+ }
+ 
+ .margin10 {
+    margin: 10px;
+ }
+ 
+
+ .boton {
+    border-radius: 5px;
+    padding: 5px;
+    background-color: white;
+ }
