@@ -23,7 +23,7 @@ class Login extends Component {
     }
     
     handleSubmit(event) {
-        console.log('A name was submitted: ' + this.state.email + " and " + this.state.password);
+        console.log('this was submitted: ' + this.state.email + " and " + this.state.password);
         event.preventDefault();
 
         //get the token logic
