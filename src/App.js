@@ -14,19 +14,25 @@ class App extends Component {
     super(props);
     this.state = {
       token: "",
-      status: "", //Fetch status from api
+      status: "online", //Fetch status from api
       users: [] // fetch from api
     }
   }
 
+  onRouteChange = (location) =>{
+    this.setState({
+      route: location
+    })
+  }
   
   render(){
     return (
       <Provider store={store}>
         <div className="App">
         <Router>
-        <Route path="/login" component={Login}/>
-        <PrivateRoute component={Chatbox} status={this.state.status}/>
+        <Route exact path="/login" component={Login}/>
+        <Route exact path="/register" component={Register}/>
+        <Route exact path="/" component={Chatbox} />
         </Router>  
         </div>
       </Provider>

@@ -34,6 +34,8 @@ class Register extends Component {
     handleSubmit(event) {
         console.log('this was submitted: ' + this.state.email + " and " + this.state.username);
         event.preventDefault();
+        if(this.state.email.length < 1 || this.state.password.length < 1 || this.state.username.length < 1) return alert("fill the goddamn form");
+
 
         //set the token logic
         const data = { //TODO get values by handler
@@ -50,27 +52,27 @@ class Register extends Component {
             <article className="br3 ba dark-gray b--black-10 mv4 w-100 w-50-m w-25-l mw6 shadow-5 center">
             <main className="pa4 black-80">
                 <form onSubmit={this.handleSubmit}>
-                    <fieldset id="sign_up" className="">
-                        <legend className="">Sign In</legend>
-                        <div className="">
-                            <label className="" htmlFor="email-address">Name</label>
-                            <input className="" value={this.state.username} onChange={this.handleUserNameChange} type="text" name="name" id="name" />
+                    <fieldset id="sign_up" className="ba b--transparent ph0 mh0">
+                        <legend className="f1 fw6 ph0 mh0">Register</legend>
+                        <div className="mt3">
+                            <label className="db fw6 lh-copy f6" htmlFor="user-name">Name</label>
+                            <input className="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100" value={this.state.username} onChange={this.handleUserNameChange} type="text" name="name" id="name" />
                         </div>
-                        <div className="">
-                            <label className="" htmlFor="email-address">Email</label>
-                            <input className="" value={this.state.email} onChange={this.handleEmailChange} type="email" name="email-address" id="email-address" />
-                        </div>
-                        <div className="">
-                            <label className="" htmlFor="password">Password</label>
-                            <input className="" value={this.state.password} onChange={this.handlePasswordChange} type="password" name="password" id="password" />
-                        </div>
-                    </fieldset>
-                    <div className="">
-                        <button 
-                        className="" 
-                        type="submit" 
-                        value="Register">Register</button>
+                        <div className="mt3">
+                        <label className="db fw6 lh-copy f6 required" htmlFor="email-address">Email</label>
+                        <input className="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100" value={this.state.email} onChange={this.handleEmailChange} type="email" name="email-address" id="email-address" />
                     </div>
+                    <div className="mv3">
+                        <label className="db fw6 lh-copy f6" htmlFor="password">Password</label>
+                        <input className="b pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100" value={this.state.password} onChange={this.handlePasswordChange} type="password" name="password" id="password" />
+                    </div>
+                    </fieldset>
+                    <div>
+                    <input  
+                    className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib" 
+                    type="submit" 
+                    value="Register" />
+                </div>
                 </form>
             </main>
             </article >
