@@ -1,5 +1,5 @@
 import React , {Component} from 'react';
-import postData from '../helperfunctions/postdata';
+import post from '../helperfunctions/postdata';
 import '../login/Login.css'
 
 const url = "https://0924b73d.ngrok.io/api/users";
@@ -13,7 +13,7 @@ class Register extends Component {
 
     render(){
     const onClickRegister = () => {
-         postData(url, data); // create token
+         post(url, data); // create token
     }
         return(
             <article className="Login">

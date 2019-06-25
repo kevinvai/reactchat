@@ -6,7 +6,7 @@ import './App.css';
 import Login from './login/Login';
 import Register from './register/Register';
 import Chatbox from './chatbox/Chatbox';
-import postData from './helperfunctions/postdata';
+import post from './helperfunctions/postdata';
 import PrivateRoute from './PrivateRoute';
 import Particles from 'react-particles-js';
 

@@ -1,7 +1,7 @@
 import React , {Component} from 'react';
 import {BrowserRouter as Router, Route, Redirect} from 'react-router-dom';
 import Chatbox from '../chatbox/Chatbox';
-import postData from '../helperfunctions/postdata';
+import post from '../helperfunctions/postdata';
 import './Login.css'
 const url = "https://0924b73d.ngrok.io/api/auth/token";
 const data = {
@@ -11,7 +11,7 @@ const data = {
 class Login extends Component {
     render(){
         const onClickLogin = () => {
-            postData(url, data).then((token) => {
+            post(url, data).then((token) => {
                 localStorage.setItem("token", token);
             })
         }
@@ -21,11 +21,11 @@ class Login extends Component {
                 <fieldset id="sign_up" className="">
                     <legend className="">Sign In</legend>
                     <div className="margin10">
-                        <label className="" htmlFor="email-address">Email</label>
+                        <label className="" htmlFor="email-address">Email:</label>
                         <input className="" type="email" name="email-address" id="email-address" />
                     </div>
                     <div className="margin10">
-                        <label className="" htmlFor="password">Password</label>
+                        <label className="" htmlFor="password">Password:</label>
                         <input className="" type="password" name="password" id="password" />
                     </div>
                 </fieldset>
