@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { Provider } from 'react-redux';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import store from './redux/createStore';
 import './App.css';
 import Login from './login/Login';
@@ -13,8 +13,8 @@ class App extends Component {
   constructor(props){
     super(props);
     this.state = {
-      token: "",
-      status: "online", //Fetch status from api
+      token: "sdfd",
+      status: "", //Fetch status from api
       users: [] // fetch from api
     }
   }
@@ -24,15 +24,33 @@ class App extends Component {
       route: location
     })
   }
+
+  onTokenChange = (token) =>{
+    this.setState({
+      token: token
+    })
+  }
   
   render(){
     return (
       <Provider store={store}>
         <div className="App">
         <Router>
-        <Route exact path="/login" component={Login}/>
-        <Route exact path="/register" component={Register}/>
         <Route exact path="/" component={Chatbox} />
+        <Route exact path="/login" component={Login}/>
+        <Route exact path="/register"
+                 render={(routeProps) => (
+                  <Register {...routeProps} onTokenChange={this.onTokenChange} />)}
+        />
+        {
+          this.state.status ? 
+          (
+            <Redirect to={{pathname: "/"}}/>
+          )  :
+          (
+            <Redirect to={{pathname: "/Login"}}/>
+          )
+        }
         </Router>  
         </div>
       </Provider>
