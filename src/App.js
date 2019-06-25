@@ -8,25 +8,12 @@ import Register from './register/Register';
 import Chatbox from './chatbox/Chatbox';
 import post from './helperfunctions/postdata';
 import PrivateRoute from './PrivateRoute';
-import Particles from 'react-particles-js';
 
-const particlesOptions = {
-  particles: {
-    line_linked: {
-      shadow: {
-        enable: true,
-        color: "#3CA9D1",
-        blur: 5,
-        value_area: 750
-      }
-    }
-  }
-};
 class App extends Component {
   constructor(props){
     super(props);
     this.state = {
-      token: localStorage.token,
+      token: "",
       status: "", //Fetch status from api
       users: [] // fetch from api
     }
