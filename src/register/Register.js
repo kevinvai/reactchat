@@ -1,9 +1,10 @@
 import React , {Component} from 'react';
-import post from '../helperfunctions/postdata';
+import {post, getOnlineStatus} from '../helperfunctions/postdata';
 import '../login/Login.css'
 import 'tachyons'
+import { thisExpression } from '@babel/types';
 
-const url = "https://0924b73d.ngrok.io/api/users";
+const url = "http://localhost:9000/api/users";
 
 class Register extends Component {
     constructor(props){
@@ -39,6 +40,7 @@ class Register extends Component {
 
         //set the token logic
         const data = { 
+            name: this.state.username,
             username: this.state.username,
             email: this.state.email,
             password: this.state.password //todo security
@@ -46,9 +48,9 @@ class Register extends Component {
 
         //post(url, data); // create token
         //place holder porque la api no funciona
-        if(true){
-            this.onTokenChange("supertoken")
-        }
+        post(url, data).then((response) => {
+            console.log('the token recieved' , response);
+        })
     }
 
     render(){

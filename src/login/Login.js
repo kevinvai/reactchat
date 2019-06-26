@@ -1,18 +1,22 @@
 import React , {Component} from 'react';
 import {BrowserRouter as Router, Route, Redirect, Link} from 'react-router-dom';
 import Chatbox from '../chatbox/Chatbox';
-import post from '../helperfunctions/postdata';
+import {post, getOnlineStatus} from '../helperfunctions/postdata';
 import './Login.css'
 import { functionTypeAnnotation, thisTypeAnnotation } from '@babel/types';
-const url = "https://0924b73d.ngrok.io/api/auth/token";
+const urlToken = "http://localhost:9000/api/auth/token";
+const urlStatus = "http://localhost:9000/api/chats/connect";
+
 class Login extends Component {
     constructor(props) {
         super(props);
         this.state = {email: '', password: ''};
+        this.onStatusChange = props.onStatusChange; //modifies app.js state
+        //this.onRouteChange = props.onRouteChange;
         this.handleEmailChange = this.handleEmailChange.bind(this);
         this.handlePasswordChange = this.handlePasswordChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.onRouteChange = this.onRouteChange.bind(this);
+        //this.onRouteChange = this.onRouteChange.bind(this);
     }
     
     handleEmailChange(event) {
@@ -29,17 +33,22 @@ class Login extends Component {
         console.log('this was submitted: ' + this.state.email + " and " + this.state.password);
 
         //get the token logic
-        const data = {
+        const dataToken = {
             login: this.state.email,
             password: this.state.password //todo security
         }
-        post(url, data).then((token) => {
-            console.log('the token' , token)
+
+        post(urlToken, dataToken).then(response => {
+            console.log(response);
+            localStorage.setItem("Token", response.token);
+            this.onStatusChange("online")
+            const dataStatus = {
+                Authorization: "Bearer " + response.token
+            }
+
+            fetch(urlStatus, dataStatus).then(response => console.log("response del fetch : " , response))
         })
-    }
-
-    onRouteChange(){
-
+        
     }
 
     render(){
