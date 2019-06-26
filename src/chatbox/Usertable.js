@@ -4,29 +4,31 @@ import post from '../helperfunctions/postdata';
 function UserTable() {
     //check users from API
     const token = localStorage.getItem("token");
-    const usersURL = "https://0924b73d.ngrok.io/api/chats/users";
+    const usersURL = "http://localhost:9000/api/chats/users";
     const data = {
-        Authorization: "beared{$token}"
+        Authorization: "Beared " + localStorage.getItem("Token")
     }
-    let userlist = [
-        "luis",
-        "kevin",
-        "andres",
-        "joseph"
-    ];
-    /*post(usersURL, data).then(users => {
-        console.log(users)
-        if(users) userlist = [...users];
-    })*/
+
+    const authkey = "Beared " + localStorage.getItem("Token");
+
+    console.log("data auth: " , authkey);
+
+    fetch(usersURL,{
+        method: 'GET', // *GET, POST, PUT, DELETE, etc.
+        mode: 'cors', // no-cors, cors, *same-origin
+        cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+        credentials: 'same-origin', // include, *same-origin, omit
+        headers: new Headers({
+            'Content-Type': 'text/plain',
+            'Authorized': authkey
+        })
+    }).then(response => {
+        console.log("response from users: " , response);
+    })
     return ( 
         <div> 
             <h2>Users</h2>
-        {
-            userlist.map(user => ( <p> {
-                    user
-                } </p>
-            ))
-        } 
+      
         </div>
     );
 }
