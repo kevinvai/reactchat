@@ -8,7 +8,21 @@ import Register from './register/Register';
 import Chatbox from './chatbox/Chatbox';
 import post from './helperfunctions/postdata';
 import PrivateRoute from './PrivateRoute';
+import Particles from 'react-particles-js';
 import 'react-chat-widget/lib/styles.css';
+
+const particlesOptions = {
+  particles: {
+    line_linked: {
+      shadow: {
+        enable: true,
+        color: "#3CA9D1",
+        blur: 5,
+        value_area: 800
+      }
+    }
+  }
+};
 
 class App extends Component {
   constructor(props){
@@ -41,6 +55,8 @@ class App extends Component {
     return (
       <Provider store={store}>
         <div className="App">
+        <Particles className='particles'
+          params={particlesOptions} />
         <Router>
         <Route exact path="/"  render={(routeProps) => (
                   <Chatbox {...routeProps} onStatusChange={this.onStatusChange} />)}/>

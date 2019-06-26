@@ -10,8 +10,7 @@ class Chatbox extends Component{
         //this.onStatusChange = this.props.onStatusChange;
         //this.handleRedirect = this.handleRedirect.bind(this);
     }
-
-
+    
     render(){
         return(
             <div className="flex">
