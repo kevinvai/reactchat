@@ -15,21 +15,26 @@ class App extends Component {
   constructor(props){
     super(props);
     this.state = {
-      token: "sdfd",
-      status: "", //Fetch status from api
-      users: [] // fetch from api
+      token: localStorage.getItem("Token"),
+      status: localStorage.getItem("Status"), //Fetch status from api
+      users: [], // fetch from api
+      route: "login"
     }
+
+    this.onTokenChange = this.onTokenChange.bind(this);
+    this.onStatusChange = this.onStatusChange.bind(this);
+    //this.onRouteChange = this.onRouteChange.bind(this);
   }
 
-  onRouteChange = (location) =>{
+  onTokenChange(token){
     this.setState({
-      route: location
+      token: token
     })
   }
 
-  onTokenChange = (token) =>{
+  onStatusChange(status){
     this.setState({
-      token: token
+      status: status
     })
   }
   
@@ -40,10 +45,11 @@ class App extends Component {
           <Widget />
         <Router>
         <Route exact path="/" component={Chatbox} />
-        <Route exact path="/login" component={Login}/>
+        <Route exact path="/login"   render={(routeProps) => (
+                  <Login {...routeProps} onStatusChange={this.onStatusChange} onRouteChange={this.onRouteChange} />)}/>
         <Route exact path="/register"
                  render={(routeProps) => (
-                  <Register {...routeProps} onTokenChange={this.onTokenChange} />)}
+                  <Register {...routeProps}  onStatusChange={this.onStatusChange} onTokenChange={this.onTokenChange} />)}
         />
         {
           this.state.status ? 
