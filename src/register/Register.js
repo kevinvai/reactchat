@@ -1,6 +1,7 @@
 import React , {Component} from 'react';
 import post from '../helperfunctions/postdata';
 import '../login/Login.css'
+import {BrowserRouter as Router, Route, Redirect, Link} from 'react-router-dom';
 import 'tachyons'
 import { thisExpression } from '@babel/types';
 
@@ -81,6 +82,9 @@ class Register extends Component {
                         type="submit" 
                         value="Register" />
                     </div>
+                    <div className="lh-copy mt3">
+                   <Link to="/login" className="f6 link dim black db pointer">Already have an account? Login</Link>
+                   </div>
                 </form>
             </main>
             </article >

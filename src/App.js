@@ -8,7 +8,6 @@ import Register from './register/Register';
 import Chatbox from './chatbox/Chatbox';
 import post from './helperfunctions/postdata';
 import PrivateRoute from './PrivateRoute';
-import { Widget } from 'react-chat-widget';
 import 'react-chat-widget/lib/styles.css';
 
 class App extends Component {
@@ -42,9 +41,9 @@ class App extends Component {
     return (
       <Provider store={store}>
         <div className="App">
-          <Widget />
         <Router>
-        <Route exact path="/" component={Chatbox} />
+        <Route exact path="/"  render={(routeProps) => (
+                  <Chatbox {...routeProps} onStatusChange={this.onStatusChange} />)}/>
         <Route exact path="/login"   render={(routeProps) => (
                   <Login {...routeProps} onStatusChange={this.onStatusChange} onRouteChange={this.onRouteChange} />)}/>
         <Route exact path="/register"
