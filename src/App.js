@@ -6,7 +6,7 @@ import './App.css';
 import Login from './login/Login';
 import Register from './register/Register';
 import Chatbox from './chatbox/Chatbox';
-import {post, getOnlineStatus} from './helperfunctions/postdata';
+import post from './helperfunctions/postdata';
 import PrivateRoute from './PrivateRoute';
 
 class App extends Component {
@@ -46,7 +46,7 @@ class App extends Component {
                   <Login {...routeProps} onStatusChange={this.onStatusChange} onRouteChange={this.onRouteChange} />)}/>
         <Route exact path="/register"
                  render={(routeProps) => (
-                  <Register {...routeProps} onTokenChange={this.onTokenChange} />)}
+                  <Register {...routeProps}  onStatusChange={this.onStatusChange} onTokenChange={this.onTokenChange} />)}
         />
         {
           this.state.status ? 

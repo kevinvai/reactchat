@@ -1,5 +1,5 @@
 import React , {Component} from 'react';
-import {post, getOnlineStatus} from '../helperfunctions/postdata';
+import post from '../helperfunctions/postdata';
 import '../login/Login.css'
 import 'tachyons'
 import { thisExpression } from '@babel/types';
@@ -15,6 +15,7 @@ class Register extends Component {
             password: "", //todo security
         }
         this.onTokenChange = props.onTokenChange; //modifies app.js state
+        this.onStatusChange = props.onStatusChange; //modifies app.js state
         this.handleUserNameChange = this.handleUserNameChange.bind(this);
         this.handleEmailChange = this.handleEmailChange.bind(this);
         this.handlePasswordChange = this.handlePasswordChange.bind(this);
@@ -50,6 +51,7 @@ class Register extends Component {
         //place holder porque la api no funciona
         post(url, data).then((response) => {
             console.log('the token recieved' , response);
+            this.onStatusChange("Online")
         })
     }
 

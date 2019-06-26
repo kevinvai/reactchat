@@ -1,7 +1,7 @@
 import React , {Component} from 'react';
 import {BrowserRouter as Router, Route, Redirect, Link} from 'react-router-dom';
 import Chatbox from '../chatbox/Chatbox';
-import {post, getOnlineStatus} from '../helperfunctions/postdata';
+import post from '../helperfunctions/postdata';
 import './Login.css'
 import { functionTypeAnnotation, thisTypeAnnotation } from '@babel/types';
 const urlToken = "http://localhost:9000/api/auth/token";
@@ -40,13 +40,16 @@ class Login extends Component {
 
         post(urlToken, dataToken).then(response => {
             console.log(response);
-            localStorage.setItem("Token", response.token);
+            if(response.token) localStorage.setItem("Token", response.token);
+            else return alert('no jalo')
             this.onStatusChange("online")
             const dataStatus = {
                 Authorization: "Bearer " + response.token
             }
 
-            fetch(urlStatus, dataStatus).then(response => console.log("response del fetch : " , response))
+            console.log("token before fetching " , response.token)
+
+            //fetch(urlStatus, dataStatus).then(response => console.log("response del fetch : " , response))
         })
         
     }
