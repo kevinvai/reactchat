@@ -58,6 +58,7 @@ class App extends Component {
     return (
       <Provider store={store}>
         <div className="App">
+        <h1>SOCKET IO VERSION</h1>
         <Particles className='particles'
           params={particlesOptions} />
         <Router>
