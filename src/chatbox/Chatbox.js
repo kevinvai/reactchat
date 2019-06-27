@@ -4,7 +4,6 @@ import UserTable from './Usertable'
 import { Widget } from 'react-chat-widget';
 import './Chatbox.css';
 import 'tachyons'
-import { isObject } from 'util';
 const io = require('socket.io-client');
 let messages = [];
 let usersOnline = [];
@@ -13,7 +12,7 @@ socket.on("connect", function(){
     console.log('hubo una conexion exitosa');
     socket.on('chat message', function(msg){
         console.log('se escucha el broadcast: ' , msg)
-        messages.push(msg);
+        messages.push(msg.message);
     })
     socket.on('join', function (user) {
         usersOnline = usersOnline.filter(Boolean);
@@ -74,7 +73,8 @@ class Chatbox extends Component{
                     <form action="form" onChange={this.handleTextChange} onSubmit={this.onClickSend}>
                         <ul>
                         {
-                            this.state.messages.map(({username, message}) => <li>{`${username = username === this.state.username ? "you " : username} say:   ${message}`}</li>)
+                            //this.state.messages.map(({username, message}) => <li>{`${username = username === this.state.username ? "you " : username} say:   ${message}`}</li>)
+                            this.state.messages.map(item => <li>{item}</li>)
                         }
                         </ul>
                     <input id="m" autocomplete="off"/><button>Send</button>
