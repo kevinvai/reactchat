@@ -25,6 +25,13 @@ socket.on("connect", function(){
     socket.on('join', function (user) {
         usersOnline = usersOnline.filter(Boolean);
         usersOnline.push(user);
+        //initialize messaging
+        let message = {
+            username: user,
+            message: "joined the room"
+        }
+        messages.push(message)
+
         console.log('users we have: ' + usersOnline);
     });
 });
@@ -60,16 +67,17 @@ class Chatbox extends Component{
             username: this.state.username
         }
         socket.emit('chat message', usermsg);
-        setInterval(()=> {
-            this.setState({messages: messages})
-        }, 500)
     }
     componentDidMount(){
         console.log('estamos enviando al lobby', this.state.username)
         socket.emit('join', this.state.username);
-        setInterval(()=> {
+        /*setInterval(()=> {
             this.setState({usersonline: usersOnline})
-        }, 1000)
+        }, 1000)*/
+
+        setInterval(()=> {
+            this.setState({messages: messages})
+        }, 500)
     }
     render(){
         return(
@@ -79,6 +87,7 @@ class Chatbox extends Component{
                     <h1>General chat</h1>
                     <form action="form" onChange={this.handleTextChange} onSubmit={this.onClickSend}>
                         <ul>
+                            <li>You joined the chat</li>
                         {
                             this.state.messages.map(item => <li>{`${item.username = item.username === this.state.username ? "you " : item.username} say:   ${item.message}`}</li>)
                             //this.state.messages.map(item => <li>{item}</li>)
