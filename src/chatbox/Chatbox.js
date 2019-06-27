@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, PureComponent} from 'react';
 import UserTable from './Usertable'
 import './Chatbox.css';
 import 'tachyons'
@@ -65,10 +65,11 @@ class Chatbox extends Component{
     }
     componentDidMount(){
         socket.emit('join', this.state.username);
-        //initialize messaging
+        //initialize messaging and refactor since it renders every 1 second
+        //regardless of input
         setInterval(()=> {
             this.setState({messages: messages, usersonline: usersOnline})
-        }, 500)
+        }, 1000)
     }
 
     render(){
@@ -84,7 +85,13 @@ class Chatbox extends Component{
                             this.state.messages.map(item => <li>{`${item.username = item.username === this.state.username ? "you " : item.username} say:   ${item.message}`}</li>)
                         }
                         </ul>
-                    <input id="m" autocomplete="off" value={this.state.text}/><button>Enter</button>
+                    <input
+                        id="m"
+                        className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib" 
+                        autocomplete="off" 
+                        placeholder="Press enter key to send"
+                        value={this.state.text}
+                        />
                     </form>
                 </div>
                 <button className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib"onClick={this.handleButtonClick}>Log out</button>
