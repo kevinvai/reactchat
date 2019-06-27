@@ -12,7 +12,7 @@ socket.on("connect", function(){
     console.log('hubo una conexion exitosa');
     socket.on('chat message', function(msg){
         console.log('se escucha el broadcast: ' , msg)
-        messages.push(msg.message);
+        messages.push(msg);
     })
     socket.on('join', function (user) {
         usersOnline = usersOnline.filter(Boolean);
@@ -55,7 +55,6 @@ class Chatbox extends Component{
         setInterval(()=> {
             this.setState({messages: messages})
         }, 500)
-        //this.setState({messages: messages});
     }
     componentDidMount(){
         console.log('estamos enviando al lobby', this.state.username)
@@ -73,8 +72,8 @@ class Chatbox extends Component{
                     <form action="form" onChange={this.handleTextChange} onSubmit={this.onClickSend}>
                         <ul>
                         {
-                            //this.state.messages.map(({username, message}) => <li>{`${username = username === this.state.username ? "you " : username} say:   ${message}`}</li>)
-                            this.state.messages.map(item => <li>{item}</li>)
+                            this.state.messages.map(item => <li>{`${item.username = item.username === this.state.username ? "you " : item.username} say:   ${item.message}`}</li>)
+                            //this.state.messages.map(item => <li>{item}</li>)
                         }
                         </ul>
                     <input id="m" autocomplete="off"/><button>Send</button>
@@ -85,8 +84,6 @@ class Chatbox extends Component{
         )
         
     }
-
-    
 }
 
 export default Chatbox;
