@@ -24,8 +24,7 @@ socket.on("connect", function(){
     })
 
     socket.on('join', function (user) {
-        usersOnline = usersOnline.filter(Boolean);
-        usersOnline.push(user);
+        usersOnline = user;
         console.log('users we have: ' + usersOnline);
     });
 });
@@ -68,7 +67,7 @@ class Chatbox extends Component{
         socket.emit('join', this.state.username);
         //initialize messaging
         setInterval(()=> {
-            this.setState({messages: messages})
+            this.setState({messages: messages, usersonline: usersOnline})
         }, 500)
     }
 

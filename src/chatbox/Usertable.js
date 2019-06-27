@@ -33,13 +33,12 @@ function UserTable(props) {
             <div className='center pa4 br3 shadow-5'>
                 <table>
                     <thead>
-                        <th>User</th>
-                        <th>Status</th>
+                        <th>Users</th>
                     </thead>
                     <tbody>
                         {
-                            users.length < 1 ? (
-                                users.map(user => <td>{user}</td>)
+                            users ? (
+                                users.map(user => <tr>{user}</tr>)
                             ) : 
                             (
                                 <td>No users..</td>
