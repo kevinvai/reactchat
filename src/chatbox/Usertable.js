@@ -1,5 +1,6 @@
 import React from "react";
 import post from '../helperfunctions/postdata';
+import 'tachyons';
 
 function UserTable() {
     //check users from API
@@ -27,9 +28,24 @@ function UserTable() {
         console.log("response from users: " , response);
     })
     return ( 
-        <div> 
-            <h2>Users</h2>
-      
+        <div className='left'>
+            <h1>Chat Users</h1>
+            <div className='center pa4 br3 shadow-5'>
+                <table>
+                    <thead>
+                        <th>User</th>
+                        <th>Status</th>
+                    </thead>
+                    <tbody>
+                        <td>
+                            kevin
+                        </td>
+                        <td>
+                            Online
+                        </td>
+                    </tbody>
+                </table>
+            </div>
         </div>
     );
 }

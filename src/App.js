@@ -23,7 +23,6 @@ const particlesOptions = {
     }
   }
 };
-
 class App extends Component {
   constructor(props){
     super(props);
@@ -58,12 +57,11 @@ class App extends Component {
         <Particles className='particles'
           params={particlesOptions} />
         <Router>
-        <Route exact path="/"  render={(routeProps) => (
+        <Route exact path="/" render={(routeProps) => (
                   <Chatbox {...routeProps} onStatusChange={this.onStatusChange} />)}/>
-        <Route exact path="/login"   render={(routeProps) => (
+        <Route exact path="/login" render={(routeProps) => (
                   <Login {...routeProps} onStatusChange={this.onStatusChange} onRouteChange={this.onRouteChange} />)}/>
-        <Route exact path="/register"
-                 render={(routeProps) => (
+        <Route exact path="/register" render={(routeProps) => (
                   <Register {...routeProps}  onStatusChange={this.onStatusChange} onTokenChange={this.onTokenChange} />)}
         />
         {
