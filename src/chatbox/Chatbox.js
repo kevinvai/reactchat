@@ -1,18 +1,26 @@
 import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
 import UserTable from './Usertable'
-import { Widget } from 'react-chat-widget';
 import './Chatbox.css';
 import 'tachyons'
 const io = require('socket.io-client');
+//control variables, refactor handle by redux store
 let messages = [];
 let usersOnline = [];
 const socket = io.connect('http://localhost:3002');
+
 socket.on("connect", function(){
     console.log('hubo una conexion exitosa');
     socket.on('chat message', function(msg){
         console.log('se escucha el broadcast: ' , msg)
         messages.push(msg);
+    })
+    socket.on('logout', function(msg){
+        console.log('se escucha el broadcast: ' , msg)
+        let message = {
+            username: msg,
+            message: "left the room"
+        }
+        messages.push(message);
     })
     socket.on('join', function (user) {
         usersOnline = usersOnline.filter(Boolean);
@@ -82,7 +90,6 @@ class Chatbox extends Component{
                 <button className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib"onClick={this.handleButtonClick}>Log out</button>
             </div>
         )
-        
     }
 }
 
