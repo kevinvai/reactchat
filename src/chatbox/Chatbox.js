@@ -42,7 +42,7 @@ class Chatbox extends Component{
 
     handleButtonClick(){
         console.log('button was clicked')
-        socket.emit('disconnect' , this.state.username);
+        socket.emit('logout' , this.state.username);
         this.onStatusChange('offline' , null);
     }
 
@@ -55,15 +55,15 @@ class Chatbox extends Component{
         socket.emit('chat message', usermsg);
         setInterval(()=> {
             this.setState({messages: messages})
-        }, 1000)
+        }, 500)
         //this.setState({messages: messages});
     }
     componentDidMount(){
         console.log('estamos enviando al lobby', this.state.username)
         socket.emit('join', this.state.username);
-        /*setInterval(()=> {
+        setInterval(()=> {
             this.setState({usersonline: usersOnline})
-        }, 1000)*/
+        }, 1000)
     }
     render(){
         return(
