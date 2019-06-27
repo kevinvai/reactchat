@@ -3,11 +3,11 @@ import UserTable from './Usertable'
 import './Chatbox.css';
 import 'tachyons'
 const io = require('socket.io-client');
-//control variables, refactor handle by redux store
+const socket = io.connect('http://localhost:3002');
+//control variables, refactor possibly by redux store
 let messages = [];
 let usersOnline = [];
-const socket = io.connect('http://localhost:3002');
-
+//-------------------socket logic----------------
 socket.on("connect", function(){
     console.log('hubo una conexion exitosa');
     socket.on('chat message', function(msg){
@@ -22,19 +22,14 @@ socket.on("connect", function(){
         }
         messages.push(message);
     })
+
     socket.on('join', function (user) {
         usersOnline = usersOnline.filter(Boolean);
         usersOnline.push(user);
-        //initialize messaging
-        let message = {
-            username: user,
-            message: "joined the room"
-        }
-        messages.push(message)
-
         console.log('users we have: ' + usersOnline);
     });
 });
+//------------------socket logic end---------------------------
 class Chatbox extends Component{
     constructor(props){
         super(props);
@@ -56,7 +51,6 @@ class Chatbox extends Component{
     }
 
     handleButtonClick(){
-        console.log('button was clicked')
         socket.emit('logout' , this.state.username);
         this.onStatusChange('offline' , null);
     }
@@ -71,16 +65,13 @@ class Chatbox extends Component{
         socket.emit('chat message', usermsg);
     }
     componentDidMount(){
-        console.log('estamos enviando al lobby', this.state.username)
         socket.emit('join', this.state.username);
-        /*setInterval(()=> {
-            this.setState({usersonline: usersOnline})
-        }, 1000)*/
-
+        //initialize messaging
         setInterval(()=> {
             this.setState({messages: messages})
         }, 500)
     }
+
     render(){
         return(
             <div className="flex">
@@ -92,7 +83,6 @@ class Chatbox extends Component{
                             <li>You joined the chat</li>
                         {
                             this.state.messages.map(item => <li>{`${item.username = item.username === this.state.username ? "you " : item.username} say:   ${item.message}`}</li>)
-                            //this.state.messages.map(item => <li>{item}</li>)
                         }
                         </ul>
                     <input id="m" autocomplete="off" value={this.state.text}/><button>Send</button>

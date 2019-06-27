@@ -1,9 +1,7 @@
 import React , {Component} from 'react';
 import {BrowserRouter as Router, Route, Redirect, Link} from 'react-router-dom';
-import Chatbox from '../chatbox/Chatbox';
 import post from '../helperfunctions/postdata';
 import './Login.css'
-import { functionTypeAnnotation, thisTypeAnnotation } from '@babel/types';
 const urlToken = "http://localhost:9000/api/auth/token";
 const urlStatus = "http://localhost:9000/api/chats/connect";
 
@@ -30,7 +28,6 @@ class Login extends Component {
     handleSubmit(event) {
         event.preventDefault();
         if(this.state.email.length < 1 || this.state.password.length < 1) return alert("fill the goddamn form")
-        console.log('this was submitted: ' + this.state.email + " and " + this.state.password);
 
         //get the token logic
         const dataToken = {
@@ -39,20 +36,16 @@ class Login extends Component {
         }
 
         post(urlToken, dataToken).then(response => {
-            console.log(response);
             localStorage.removeItem("Token")
             if(response.token) localStorage.setItem("Token", response.token);
             else return alert('no jalo')
             this.onStatusChange("online" , this.state.email)
-            const dataStatus = {
+            /*const dataStatus = {
                 Authorization: "Bearer " + response.token
-            }
-
-            console.log("token before fetching " , response.token)
+            }*/
 
             //fetch(urlStatus, dataStatus).then(response => console.log("response del fetch : " , response))
-        })
-        
+        })    
     }
 
     render(){
@@ -71,14 +64,14 @@ class Login extends Component {
                         <input className="b pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100" value={this.state.password} onChange={this.handlePasswordChange} type="password" name="password" id="password" />
                     </div>
                 </fieldset>
-                <div className="">
+                <div>
                     <input  
                     className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib" 
                     type="submit" 
                     value="Sign in" />
                 </div>
                 <div className="lh-copy mt3">
-                   <Link to="/register" className="f6 link dim black db pointer">Register</Link>
+                    <Link to="/register" className="f6 link dim black db pointer">Register</Link>
                 </div>
             </form>
         </main>
