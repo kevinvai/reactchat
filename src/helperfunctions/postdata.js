@@ -1,4 +1,4 @@
-function postData(url = '', data = {}) {
+function post(url = '', data = {}) {
     // Default options are marked with *
       return fetch(url, {
           method: 'POST', // *GET, POST, PUT, DELETE, etc.
@@ -16,4 +16,4 @@ function postData(url = '', data = {}) {
       .then(response => response.json()); // parses JSON response into native Javascript objects 
   }
 
-  export default postData;
+  export default post;
