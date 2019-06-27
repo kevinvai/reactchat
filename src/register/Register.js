@@ -52,7 +52,7 @@ class Register extends Component {
         //place holder porque la api no funciona
         post(url, data).then((response) => {
             console.log('the token recieved' , response);
-            this.onStatusChange("Online")
+            this.onStatusChange("Online", this.state.email)
         })
     }
 
@@ -83,8 +83,8 @@ class Register extends Component {
                         value="Register" />
                     </div>
                     <div className="lh-copy mt3">
-                   <Link to="/login" className="f6 link dim black db pointer">Already have an account? Login</Link>
-                   </div>
+                <Link to="/login" className="f6 link dim black db pointer">Already have an account? Login</Link>
+                </div>
                 </form>
             </main>
             </article >

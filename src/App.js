@@ -27,10 +27,10 @@ class App extends Component {
   constructor(props){
     super(props);
     this.state = {
+      username: "",
       token: localStorage.getItem("Token"),
       status: localStorage.getItem("Status"), //Fetch status from api
       users: [], // fetch from api
-      route: "login"
     }
 
     this.onTokenChange = this.onTokenChange.bind(this);
@@ -44,13 +44,17 @@ class App extends Component {
     })
   }
 
-  onStatusChange(status){
+  onStatusChange(status, username){
     this.setState({
-      status: status
+      status: status,
+      username: username
     })
   }
   
   render(){
+    console.log('rendered app');
+    console.log('status: ' + this.state.status);
+
     return (
       <Provider store={store}>
         <div className="App">
@@ -58,15 +62,16 @@ class App extends Component {
           params={particlesOptions} />
         <Router>
         <Route exact path="/" render={(routeProps) => (
-                  <Chatbox {...routeProps} onStatusChange={this.onStatusChange} />)}/>
+                  <Chatbox {...routeProps} username={this.state.username} onStatusChange={this.onStatusChange} />)}/>
         <Route exact path="/login" render={(routeProps) => (
                   <Login {...routeProps} onStatusChange={this.onStatusChange} onRouteChange={this.onRouteChange} />)}/>
         <Route exact path="/register" render={(routeProps) => (
                   <Register {...routeProps}  onStatusChange={this.onStatusChange} onTokenChange={this.onTokenChange} />)}
         />
         {
-          this.state.status ? 
+          this.state.status === 'online' ? 
           (
+            
             <Redirect to={{pathname: "/"}}/>
           )  :
           (

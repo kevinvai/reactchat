@@ -43,7 +43,7 @@ class Login extends Component {
             localStorage.removeItem("Token")
             if(response.token) localStorage.setItem("Token", response.token);
             else return alert('no jalo')
-            this.onStatusChange("online")
+            this.onStatusChange("online" , this.state.email)
             const dataStatus = {
                 Authorization: "Bearer " + response.token
             }
