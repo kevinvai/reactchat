@@ -43,7 +43,8 @@ class Chatbox extends Component{
             message: "",
             messages: [],
             username: props.username,
-            usersonline: []
+            usersonline: [],
+            text: ""
         }
         this.onClickSend = this.onClickSend.bind(this);
         this.onStatusChange = props.onStatusChange; //modifies app.js state
@@ -51,7 +52,7 @@ class Chatbox extends Component{
         this.handleButtonClick = this.handleButtonClick.bind(this);        
     }
     handleTextChange(event){
-        this.setState({message: event.target.value});
+        this.setState({message: event.target.value, text: event.target.value});
     }
 
     handleButtonClick(){
@@ -66,6 +67,7 @@ class Chatbox extends Component{
             message: this.state.message,
             username: this.state.username
         }
+        this.setState({text: ""})
         socket.emit('chat message', usermsg);
     }
     componentDidMount(){
@@ -93,7 +95,7 @@ class Chatbox extends Component{
                             //this.state.messages.map(item => <li>{item}</li>)
                         }
                         </ul>
-                    <input id="m" autocomplete="off"/><button>Send</button>
+                    <input id="m" autocomplete="off" value={this.state.text}/><button>Send</button>
                     </form>
                 </div>
                 <button className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib"onClick={this.handleButtonClick}>Log out</button>
