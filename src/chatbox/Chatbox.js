@@ -9,13 +9,10 @@ let messages = [];
 let usersOnline = [];
 //-------------------socket logic----------------
 socket.on("connect", function(){
-    console.log('hubo una conexion exitosa');
     socket.on('chat message', function(msg){
-        console.log('se escucha el broadcast: ' , msg)
         messages.push(msg);
     })
     socket.on('logout', function(msg){
-        console.log('se escucha el broadcast: ' , msg)
         let message = {
             username: msg,
             message: "left the room"
@@ -25,7 +22,6 @@ socket.on("connect", function(){
 
     socket.on('join', function (user) {
         usersOnline = user;
-        console.log('users we have: ' + usersOnline);
     });
 });
 //------------------socket logic end---------------------------

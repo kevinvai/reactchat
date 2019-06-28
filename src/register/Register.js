@@ -1,9 +1,8 @@
 import React , {Component} from 'react';
 import post from '../helperfunctions/postdata';
 import '../login/Login.css'
-import {BrowserRouter as Router, Route, Redirect, Link} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import 'tachyons'
-import { thisExpression } from '@babel/types';
 
 const url = "http://localhost:9000/api/users";
 
@@ -52,6 +51,7 @@ class Register extends Component {
         //place holder porque la api no funciona
         post(url, data).then((response) => {
             console.log('the token recieved' , response);
+            //TODO validate response
             this.onStatusChange("Online", this.state.email)
         })
     }

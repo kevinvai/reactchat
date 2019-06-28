@@ -50,9 +50,6 @@ class App extends Component {
   }
   
   render(){
-    console.log('rendered app');
-    console.log('status: ' + this.state.status);
-
     return (
       <Provider store={store}>
         <div className="App">
