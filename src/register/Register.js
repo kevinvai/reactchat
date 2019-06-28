@@ -1,6 +1,7 @@
 import React , {Component} from 'react';
 import post from '../helperfunctions/postdata';
 import '../login/Login.css'
+import {BrowserRouter as Router, Route, Redirect, Link} from 'react-router-dom';
 import 'tachyons'
 import { thisExpression } from '@babel/types';
 
@@ -35,7 +36,7 @@ class Register extends Component {
     }
     
     handleSubmit(event) {
-        alert('this was submitted: ' + this.state.email + " and " + this.state.username);
+        console.log('this was submitted: ' + this.state.email + " and " + this.state.username);
         event.preventDefault();
         if(this.state.email.length < 1 || this.state.password.length < 1 || this.state.username.length < 1) return alert("fill the goddamn form");
 
@@ -51,7 +52,7 @@ class Register extends Component {
         //place holder porque la api no funciona
         post(url, data).then((response) => {
             console.log('the token recieved' , response);
-            this.onStatusChange("Online")
+            this.onStatusChange("Online", this.state.email)
         })
     }
 
@@ -81,6 +82,9 @@ class Register extends Component {
                         type="submit" 
                         value="Register" />
                     </div>
+                    <div className="lh-copy mt3">
+                <Link to="/login" className="f6 link dim black db pointer">Already have an account? Login</Link>
+                </div>
                 </form>
             </main>
             </article >
