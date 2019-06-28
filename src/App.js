@@ -1,13 +1,11 @@
 import React, {Component} from 'react';
 import { Provider } from 'react-redux';
-import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 import store from './redux/createStore';
 import './App.css';
 import Login from './login/Login';
 import Register from './register/Register';
 import Chatbox from './chatbox/Chatbox';
-import post from './helperfunctions/postdata';
-import PrivateRoute from './PrivateRoute';
 import Particles from 'react-particles-js';
 import 'react-chat-widget/lib/styles.css';
 
