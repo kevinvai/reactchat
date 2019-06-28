@@ -8,7 +8,7 @@ Current master version has a functional login logout and register pending functi
 # For using sockets 
 
 Clone socket io repository, npm install and npm start, download [here](https://github.com/kevinvai/socketiochat).
-Then switch branch to socket-ioversion git checkout -b socketio-stable.
+Then switch branch to socket-stable: git checkout -b socketio-stable.
 
 Socket io version might/will consume a lot of computer resources in it's current version since it needs to fix performance issues when rendering components and because of the particles background.
 
