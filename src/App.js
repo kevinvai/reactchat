@@ -3,6 +3,9 @@ import { Provider } from 'react-redux';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import store from './redux/createStore';
 import './App.css';
+import Login from './components/Login';
+import Register from './components/Register';
+import Chatbox from './components/chatbox';
 
 function App() {
   return (
@@ -10,7 +13,10 @@ function App() {
       <div className="App">
         <Router>
           <Switch>
-            <Route path="/" component={() => "Home"} />
+            <Route exact path="/" component={Chatbox} />
+            <Route path="/login" component={Login} />
+            <Route path="/register" component={Register} />
+
           </Switch>
         </Router>
       </div>
