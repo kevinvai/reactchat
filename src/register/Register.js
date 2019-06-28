@@ -47,8 +47,6 @@ class Register extends Component {
             password: this.state.password //todo security
         }
 
-        //post(url, data); // create token
-        //place holder porque la api no funciona
         post(url, data).then((response) => {
             console.log('the token recieved' , response);
             //TODO validate response
