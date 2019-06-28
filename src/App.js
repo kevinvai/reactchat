@@ -1,13 +1,14 @@
 import React, {Component} from 'react';
 import { Provider } from 'react-redux';
-import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import store from './redux/createStore';
 import './App.css';
 import Login from './login/Login';
 import Register from './register/Register';
 import Chatbox from './chatbox/Chatbox';
-import Particles from 'particles';
-import 'react-chat-widget/lib/styles.css';
+import post from './helperfunctions/postdata';
+import PrivateRoute from './PrivateRoute';
+import Particles from 'react-particles-js';
 
 const particlesOptions = {
   particles: {
@@ -20,7 +21,7 @@ const particlesOptions = {
       }
     }
   }
-};
+ };
 class App extends Component {
   constructor(props){
     super(props);
@@ -53,7 +54,7 @@ class App extends Component {
       <Provider store={store}>
         <div className="App">
         <Particles className="particles"
-         params={particlesOptions} />  
+         params={particlesOptions} />
         <Router>
         <Route exact path="/" component={Chatbox} />
         <Route exact path="/login"   render={(routeProps) => (

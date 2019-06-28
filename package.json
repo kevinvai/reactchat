@@ -16,6 +16,7 @@
     "recompose": "^0.30.0",
     "redux": "^4.0.1",
     "redux-logger": "^3.0.6",
+    "socket.io": "^2.2.0",
     "tachyons": "^4.11.1"
   },
   "scripts": {

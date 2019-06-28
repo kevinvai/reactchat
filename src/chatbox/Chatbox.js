@@ -1,7 +1,7 @@
 import React from 'react';
 import UserTable from './Usertable'
 import { Widget } from 'react-chat-widget';
-//import './Chatbox.css';
+import 'react-chat-widget/lib/styles.css';//import './Chatbox.css';
 
 function Chatbox(){
     return(
