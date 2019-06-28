@@ -39,8 +39,8 @@ class Login extends Component {
         const loginURL = "http://localhost:9000/api/auth/token";
         localStorage.removeItem("token");
         postData(loginURL, data)
-        .then(response => localStorage.setItem("token", response.token));
-
+        .then(response => localStorage.setItem("token", response.token))
+        .then(response => console.log(response.token));
         this.setState({ fireRedirect: true })
     }
 
