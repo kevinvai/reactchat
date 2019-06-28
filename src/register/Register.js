@@ -35,7 +35,7 @@ class Register extends Component {
     }
     
     handleSubmit(event) {
-        console.log('this was submitted: ' + this.state.email + " and " + this.state.username);
+        alert('this was submitted: ' + this.state.email + " and " + this.state.username);
         event.preventDefault();
         if(this.state.email.length < 1 || this.state.password.length < 1 || this.state.username.length < 1) return alert("fill the goddamn form");
 
