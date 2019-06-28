@@ -10,6 +10,13 @@
   border: 2px solid black !important;
 }
 
+.button-sign-out{
+  width: 100px;
+  height: 60px;
+  background-color: #b92b60;
+  opacity: 0.50;
+}
+
 .body {
   width: 600px;
 }

@@ -90,7 +90,7 @@ class Chatbox extends Component{
                         />
                     </form>
                 </div>
-                <button className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib"onClick={this.handleButtonClick}>Log out</button>
+                <button className='button-sign-out grow f4 link ph3 pv2 dib white bg-dark-red' onClick={this.handleButtonClick}>Log out</button>
             </div>
         )
     }
