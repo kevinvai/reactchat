@@ -36,10 +36,8 @@ class Register extends Component {
     }
     
     handleSubmit(event) {
-        console.log('this was submitted: ' + this.state.email + " and " + this.state.username);
         event.preventDefault();
         if(this.state.email.length < 1 || this.state.password.length < 1 || this.state.username.length < 1) return alert("fill the goddamn form");
-
         //set the token logic
         const data = { 
             name: this.state.username,
@@ -47,7 +45,6 @@ class Register extends Component {
             email: this.state.email,
             password: this.state.password //todo security
         }
-
         //post(url, data); // create token
         //place holder porque la api no funciona
         post(url, data).then((response) => {

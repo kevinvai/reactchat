@@ -7,3 +7,8 @@
   display: inline-block;
   border: 2px solid black !important;
 }
+
+.button-sign-out{
+  width:100px;
+  height: 60px
+}

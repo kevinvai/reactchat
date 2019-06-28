@@ -24,6 +24,7 @@ class App extends Component {
   constructor(props){
     super(props);
     this.state = {
+      username: "",
       token: localStorage.getItem("Token"),
       status: localStorage.getItem("Status"), //Fetch status from api
       users: [], // fetch from api
@@ -41,9 +42,10 @@ class App extends Component {
     })
   }
 
-  onStatusChange(status){
+  onStatusChange(status, username){
     this.setState({
-      status: status
+      status: status,
+      username: username
     })
   }
   
@@ -54,7 +56,8 @@ class App extends Component {
         <Particles className="particles"
           params={particlesOptions} />
         <Router>
-        <Route exact path="/" component={Chatbox} />
+        <Route exact path="/" render={(routeProps) => (
+                  <Chatbox {...routeProps} username={this.state.username} onStatusChange={this.onStatusChange} />)}/>        
         <Route exact path="/login"   render={(routeProps) => (
                   <Login {...routeProps} onStatusChange={this.onStatusChange} onRouteChange={this.onRouteChange} />)}/>
         <Route exact path="/register"
@@ -62,7 +65,7 @@ class App extends Component {
                   <Register {...routeProps}  onStatusChange={this.onStatusChange} onTokenChange={this.onTokenChange} />)}
         />
         {
-          this.state.status ? 
+          this.state.status === "online" ? //refactor variable instead of direct string
           (
             <Redirect to={{pathname: "/"}}/>
           )  :
