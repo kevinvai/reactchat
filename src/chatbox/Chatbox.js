@@ -7,6 +7,7 @@ function Chatbox(){
     return(
         <div className="flex">
             <UserTable />
+            <Widget />
             <section className="chat-window">
                 <p>text</p>
             </section>
