@@ -54,13 +54,13 @@ class App extends Component {
       <Provider store={store}>
         <div className="App">
         <Particles className="particles"
-         params={particlesOptions} />
+          params={particlesOptions} />
         <Router>
         <Route exact path="/" component={Chatbox} />
         <Route exact path="/login"   render={(routeProps) => (
                   <Login {...routeProps} onStatusChange={this.onStatusChange} onRouteChange={this.onRouteChange} />)}/>
         <Route exact path="/register"
-                 render={(routeProps) => (
+                  render={(routeProps) => (
                   <Register {...routeProps}  onStatusChange={this.onStatusChange} onTokenChange={this.onTokenChange} />)}
         />
         {
